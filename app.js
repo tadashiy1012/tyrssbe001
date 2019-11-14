@@ -7,10 +7,13 @@ const portNum = process.env.PORT || 3000;
 const whiteList = ['http://localhost', 'https://tyrssbe001.herokuapp.com'];
 const corsOpts = {
     origin: (origin, callback) => {
-        const host = origin.substring(0, origin.lastIndexOf(':'));
-        console.log(origin, host);
-        if (whiteList.indexOf(host) !== -1) {
-            callback(null, true);
+        if (origin) {
+            const host = origin.substring(0, origin.lastIndexOf(':'));
+            if (whiteList.indexOf(host) !== -1) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
         } else {
             callback(new Error('Not allowed by CORS'));
         }
@@ -18,6 +21,7 @@ const corsOpts = {
 };
 
 app.get('/', cors(corsOpts), (req, res) => {
+    console.log(req.query);
     res.send('hello!');
 });
 
