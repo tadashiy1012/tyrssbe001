@@ -10,7 +10,8 @@ const portNum = process.env.PORT || 3000;
 const whiteList = [
     'http://localhost:3000',
     'http://localhost:8080',
-    'https://tyrssbe001.herokuapp.com'
+    'https://tyrssbe001.herokuapp.com',
+    'https://stupefied-mcnulty-7f39b1.netlify.com'
 ];
 
 const corsOpts = {
